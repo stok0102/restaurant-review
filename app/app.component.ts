@@ -18,7 +18,7 @@ import { NewReviewComponent } from './new-review.component';
         <new-restaurant (newRestaurantEvent)="addRestaurant($event)"></new-restaurant>
       </div>
       <div *ngIf="selectedRestaurant" class="col-sm-6">
-        <review-list [reviewList]="reviews" [reviewListFilter]="selectedRestaurant.id"></review-list>
+        <review-list [reviewList]="reviews" [selectedRestaurant]="selectedRestaurant"></review-list>
         <new-review [restaurantId]="selectedRestaurant.id" (newReviewEvent)="addReview($event)"></new-review>
       </div>
     </div>
@@ -33,14 +33,12 @@ export class AppComponent {
   constructor() {
     this.restaurants = [new Restaurant("Burgerville", "Burgers", "1234 NW Main St.", 1, 0)];
     this.reviews = [new Review("Bob", "I love burgerville with all my heart", 5, 0), new Review("John", "I love burgerville with all my heart", 5, 0), new Review("Jim", "I despise pizza", 1, 1), new Review("Jacques", "I am vegan", 2, 1)];
-    console.log(this.reviews);
   }
   addRestaurant(restaurant: Restaurant) {
     restaurant.id = this.restaurants.length;
      this.restaurants.push(restaurant);
   }
   changeReviewFilter(selectedRestaurant: Restaurant) {
-    console.log("event heard");
     this.selectedRestaurant = selectedRestaurant;
   }
   addReview(review: Review) {

@@ -22,7 +22,6 @@ export class RestaurantListComponent {
     this.onRestaurantSelect = new EventEmitter();
   }
   restaurantClicked(clickedRestaurant: Restaurant): void {
-    console.log('our click', clickedRestaurant);
     this.onRestaurantSelect.emit(clickedRestaurant);
   }
 }
